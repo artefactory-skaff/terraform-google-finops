@@ -1,0 +1,16 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: terraform-google-finops
+  title: Terraform module for GCP FinOps
+  description: <<EOF
+This Terraform module allows you to configure and deploy:
+- BigQuery quotas and quotas alerts.
+- Project budgets and budgets alerts.
+  EOF
+  annotations:
+    github.com/project-slug: artefactory/terraform-google-finops
+spec:
+  type: service
+  owner: user:AlexisVLRT
+  lifecycle: experimental
