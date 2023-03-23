@@ -1,0 +1,6 @@
+site_name: Terraform GCP FinOps module
+repo_name: artefactory/terraform-google-finops
+repo_url: https://github.com/artefactory/terraform-google-finops
+
+plugins:
+  - techdocs-core
