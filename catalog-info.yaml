@@ -3,7 +3,7 @@ kind: Component
 metadata:
   name: terraform-google-finops
   title: Terraform module for GCP FinOps
-  description: |
+  description: >
     This Terraform module allows you to configure and deploy:
     - BigQuery quotas and quotas alerts.
     - Project budgets and budgets alerts.
