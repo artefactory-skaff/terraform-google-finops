@@ -9,6 +9,7 @@ metadata:
     - Project budgets and budgets alerts.
   annotations:
     github.com/project-slug: artefactory/terraform-google-finops
+    backstage.io/techdocs-ref: dir:.
 spec:
   type: service
   owner: user:AlexisVLRT
