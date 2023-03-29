@@ -4,3 +4,9 @@ repo_url: https://github.com/artefactory/terraform-google-finops
 
 plugins:
   - techdocs-core
+
+nav:
+  - Home: index.md
+  - User Guide:
+      - One shot deployment: one_shot_deployment
+      - Continuous deployment: continuous_deployment

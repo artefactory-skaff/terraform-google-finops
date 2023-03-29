@@ -1,1 +1,1 @@
-terraform-google-finops
+This module Terraforms configurable BigQuery quotas and billing alerts on a GCP project.
