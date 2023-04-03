@@ -19,7 +19,8 @@
 * }
 *
 * module "finops" {
-*   source = "./modules/finops"
+*   source  = "artefactory/finops/google"
+*   version = "~> 0.1"
 *
 *   quotas = {
 *     bigquery_quota_tb_per_day_total    = 10  # 10 TiB Per day limit for the project
@@ -40,7 +41,8 @@
 * }
 *
 * module "finops" {
-*   source = "./modules/finops"
+*   source  = "artefactory/finops/google"
+*   version = "~> 0.1"
 *
 *   quotas = {
 *     bigquery_quota_tb_per_day_total    = 10  # 10 TiB Per day limit for the project
@@ -73,7 +75,8 @@
 * }
 *
 * module "finops" {
-*   source = "./modules/finops"
+*   source  = "artefactory/finops/google"
+*   version = "~> 0.1"
 *
 *   budgets = {
 *     billing_account_id = "ABCDEF-ABCDEF-ABCDEF"
