@@ -45,7 +45,7 @@ Quota project "PROJECT_ID" was added to ADC which can be used by Google client l
 ## Deploy the module
 
 Create a `main.tf` file with the following contents:
-!!! abstract "main.tf"
+??? abstract "main.tf"
 
     ```hcl
     module "finops" {
