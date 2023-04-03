@@ -45,8 +45,41 @@ Quota project "PROJECT_ID" was added to ADC which can be used by Google client l
 ## Deploy the module
 
 Create a `main.tf` file with the following contents:
-```hcl
+!!! abstract "main.tf"
 
-```
+    ```hcl
+    module "finops" {
+      source  = "artefactory/finops/google"
+      version = "~> 0.1"
+    
+      budgets = {
+        billing_account_id = "ABCDEF-ABCDEF-ABCDEF"
+    
+        # Configure a $200 USD budget for the project with alerts at 80% actual consumption and 200% forecasted consumption.
+        absolute_amount = {
+          amount = 200
+          alerts = {
+            notification_channels          = [google_monitoring_notification_channel.basic.id]
+    
+            # Send an alert when 80% of the month's budget has been consumed.
+            current_threshold_ratio        = 0.8
+    
+            # Send an alert when the forecasted spend at the end of the period is greater than 200% of the budget.
+            forecasted_threshold_ratio     = 2
+          }
+        }
+    
+        # Configure a budget based on the last month's spend.
+        relative_amount = {
+          alerts = {
+            notification_channels          = [google_monitoring_notification_channel.basic.id]
+    
+            # Send an alert when the spend for this month has increased more than 20% compared to last month.
+            current_threshold_ratio        = 1.2
+          }
+        }
+      }
+    }
+    ```
 
 ## Clean-up
