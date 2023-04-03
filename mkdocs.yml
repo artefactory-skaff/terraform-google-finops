@@ -5,6 +5,11 @@ repo_url: https://github.com/artefactory/terraform-google-finops
 plugins:
   - techdocs-core
 
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+
 nav:
   - Home: index.md
   - User Guide:
