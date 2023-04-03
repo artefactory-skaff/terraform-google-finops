@@ -1,5 +1,5 @@
 resource "google_monitoring_alert_policy" "bigquery_query_total_quota_alert" {
-  count = var.quotas.alerts.bigquery_quota_tb_per_day_total_threshold_ratio != null ? 1 : 0
+  count = try(var.quotas.alerts.bigquery_quota_tb_per_day_total_threshold_ratio, null) != null ? 1 : 0
 
   project      = var.project_id
   display_name = "Bigquery project quota alert"
@@ -22,7 +22,7 @@ resource "google_monitoring_alert_policy" "bigquery_query_total_quota_alert" {
 }
 
 resource "google_monitoring_alert_policy" "bigquery_query_user_quota_alert" {
-  count = var.quotas.alerts.bigquery_quota_tb_per_day_per_user_threshold_ratio != null ? 1 : 0
+  count = try(var.quotas.alerts.bigquery_quota_tb_per_day_per_user_threshold_ratio, null) != null ? 1 : 0
 
   project      = var.project_id
   display_name = "Bigquery user quota alert"

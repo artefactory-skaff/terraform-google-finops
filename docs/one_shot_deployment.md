@@ -44,42 +44,73 @@ Quota project "PROJECT_ID" was added to ADC which can be used by Google client l
 
 ## Deploy the module
 
-Create a `main.tf` file with the following contents:
-??? abstract "main.tf"
+Download the standalone `main.tf`:
+```shell
+$ curl -O https://raw.githubusercontent.com/artefactory/terraform-google-finops/main/examples/standalone/main.tf 
 
-    ```hcl
-    module "finops" {
-      source  = "artefactory/finops/google"
-      version = "~> 0.1"
-    
-      budgets = {
-        billing_account_id = "ABCDEF-ABCDEF-ABCDEF"
-    
-        # Configure a $200 USD budget for the project with alerts at 80% actual consumption and 200% forecasted consumption.
-        absolute_amount = {
-          amount = 200
-          alerts = {
-            notification_channels          = [google_monitoring_notification_channel.basic.id]
-    
-            # Send an alert when 80% of the month's budget has been consumed.
-            current_threshold_ratio        = 0.8
-    
-            # Send an alert when the forecasted spend at the end of the period is greater than 200% of the budget.
-            forecasted_threshold_ratio     = 2
-          }
-        }
-    
-        # Configure a budget based on the last month's spend.
-        relative_amount = {
-          alerts = {
-            notification_channels          = [google_monitoring_notification_channel.basic.id]
-    
-            # Send an alert when the spend for this month has increased more than 20% compared to last month.
-            current_threshold_ratio        = 1.2
-          }
-        }
-      }
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  3066  100  3066    0     0  11883      0 --:--:-- --:--:-- --:--:-- 11883
+```
+Initialize Terraform:
+```shell
+$ terraform init
+
+Initializing the backend...
+Initializing modules...
+Downloading registry.terraform.io/artefactory/finops/google 0.1.1 for finops...
+- finops in .terraform/modules/finops
+
+Initializing provider plugins...
+- Finding latest version of hashicorp/google...
+- Finding latest version of hashicorp/google-beta...
+- Installing hashicorp/google v4.59.0...
+- Installed hashicorp/google v4.59.0 (signed by HashiCorp)
+- Installing hashicorp/google-beta v4.59.0...
+- Installed hashicorp/google-beta v4.59.0 (signed by HashiCorp)
+
+Terraform has created a lock file .terraform.lock.hcl to record the provider
+selections it made above. Include this file in your version control repository
+so that Terraform can guarantee to make the same selections by default when
+you run "terraform init" in the future.
+
+Terraform has been successfully initialized!
+
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.
+```
+
+Open `main.tf` and uncomment the quotas, budgets, and alerts that you want.
+
+Apply the infrastructure configuration:
+```shell
+$ terraform apply
+
+[...]
+  # module.finops.google_service_usage_consumer_quota_override.bigquery_query_user will be created
+  + resource "google_service_usage_consumer_quota_override" "bigquery_query_user" {
+      + force          = true
+      + id             = (known after apply)
+      + limit          = "%2Fd%2Fproject%2Fuser"
+      + metric         = "bigquery.googleapis.com%2Fquota%2Fquery%2Fusage"
+      + name           = (known after apply)
+      + override_value = "10485760"
+      + project        = "PROJECT_ID"
+      + service        = "bigquery.googleapis.com"
     }
-    ```
+
+Plan: 7 to add, 0 to change, 0 to destroy.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value:
+```
 
 ## Clean-up
