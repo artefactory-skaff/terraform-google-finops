@@ -9,7 +9,7 @@
 *
 * ### Minimal BQ quotas
 * ```hcl
-* resource "google_monitoring_notification_channel" "basic" {
+* resource "google_monitoring_notification_channel" "email" {
 *   display_name = "Test Notification Channel"
 *   type         = "email"
 *   labels = {
@@ -21,6 +21,8 @@
 * module "finops" {
 *   source  = "artefactory/finops/google"
 *   version = "~> 0.1"
+*
+*   project_id = "PROJECT_ID"
 *
 *   quotas = {
 *     bigquery_quota_tb_per_day_total    = 10  # 10 TiB Per day limit for the project
@@ -31,7 +33,7 @@
 *
 * ### BQ quotas with alerts
 * ```hcl
-* resource "google_monitoring_notification_channel" "basic" {
+* resource "google_monitoring_notification_channel" "email" {
 *   display_name = "Test Notification Channel"
 *   type         = "email"
 *   labels = {
@@ -44,12 +46,14 @@
 *   source  = "artefactory/finops/google"
 *   version = "~> 0.1"
 *
+*   project_id = "PROJECT_ID"
+*
 *   quotas = {
 *     bigquery_quota_tb_per_day_total    = 10  # 10 TiB Per day limit for the project
 *     bigquery_quota_tb_per_day_per_user = 1  # 1 TiB Per day per user limit
 *
 *     alerts = {
-*       notification_channels = [google_monitoring_notification_channel.basic.id]
+*       notification_channels = [google_monitoring_notification_channel.email.id]
 *
 *       # Send an alert when 80% of `bigquery_quota_tb_per_day_total` is reached
 *       bigquery_quota_tb_per_day_total_threshold_ratio = 0.8
@@ -65,7 +69,7 @@
 *
 * ⚠️ This requires the principals (you and/or a service account) executing this code to be `roles/billing.costsManager` on the billing account used.
 * ```hcl
-* resource "google_monitoring_notification_channel" "basic" {
+* resource "google_monitoring_notification_channel" "email" {
 *   display_name = "Test Notification Channel"
 *   type         = "email"
 *   labels = {
@@ -78,6 +82,8 @@
 *   source  = "artefactory/finops/google"
 *   version = "~> 0.1"
 *
+*   project_id = "PROJECT_ID"
+*
 *   budgets = {
 *     billing_account_id = "ABCDEF-ABCDEF-ABCDEF"
 *
@@ -85,7 +91,7 @@
 *     absolute_amount = {
 *       amount = 200
 *       alerts = {
-*         notification_channels          = [google_monitoring_notification_channel.basic.id]
+*         notification_channels          = [google_monitoring_notification_channel.email.id]
 *
 *         # Send an alert when 80% of the month's budget has been consumed.
 *         current_threshold_ratio        = 0.8
@@ -98,7 +104,7 @@
 *     # Configure a budget based on the last month's spend.
 *     relative_amount = {
 *       alerts = {
-*         notification_channels          = [google_monitoring_notification_channel.basic.id]
+*         notification_channels          = [google_monitoring_notification_channel.email.id]
 *
 *         # Send an alert when the spend for this month has increased more than 20% compared to last month.
 *         current_threshold_ratio        = 1.2

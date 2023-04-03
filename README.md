@@ -8,7 +8,7 @@ This Terraform module allows you to configure and deploy:
 
 ### Minimal BQ quotas
 ```hcl
-resource "google_monitoring_notification_channel" "basic" {
+resource "google_monitoring_notification_channel" "email" {
   display_name = "Test Notification Channel"
   type         = "email"
   labels = {
@@ -20,6 +20,8 @@ resource "google_monitoring_notification_channel" "basic" {
 module "finops" {
   source  = "artefactory/finops/google"
   version = "~> 0.1"
+
+  project_id = "PROJECT_ID"
 
   quotas = {
     bigquery_quota_tb_per_day_total    = 10  # 10 TiB Per day limit for the project
@@ -30,7 +32,7 @@ module "finops" {
 
 ### BQ quotas with alerts
 ```hcl
-resource "google_monitoring_notification_channel" "basic" {
+resource "google_monitoring_notification_channel" "email" {
   display_name = "Test Notification Channel"
   type         = "email"
   labels = {
@@ -43,12 +45,14 @@ module "finops" {
   source  = "artefactory/finops/google"
   version = "~> 0.1"
 
+  project_id = "PROJECT_ID"
+
   quotas = {
     bigquery_quota_tb_per_day_total    = 10  # 10 TiB Per day limit for the project
     bigquery_quota_tb_per_day_per_user = 1  # 1 TiB Per day per user limit
 
     alerts = {
-      notification_channels = [google_monitoring_notification_channel.basic.id]
+      notification_channels = [google_monitoring_notification_channel.email.id]
 
       # Send an alert when 80% of `bigquery_quota_tb_per_day_total` is reached
       bigquery_quota_tb_per_day_total_threshold_ratio = 0.8
@@ -64,7 +68,7 @@ module "finops" {
 
 ⚠️ This requires the principals (you and/or a service account) executing this code to be `roles/billing.costsManager` on the billing account used.
 ```hcl
-resource "google_monitoring_notification_channel" "basic" {
+resource "google_monitoring_notification_channel" "email" {
   display_name = "Test Notification Channel"
   type         = "email"
   labels = {
@@ -77,6 +81,8 @@ module "finops" {
   source  = "artefactory/finops/google"
   version = "~> 0.1"
 
+  project_id = "PROJECT_ID"
+
   budgets = {
     billing_account_id = "ABCDEF-ABCDEF-ABCDEF"
 
@@ -84,7 +90,7 @@ module "finops" {
     absolute_amount = {
       amount = 200
       alerts = {
-        notification_channels          = [google_monitoring_notification_channel.basic.id]
+        notification_channels          = [google_monitoring_notification_channel.email.id]
 
         # Send an alert when 80% of the month's budget has been consumed.
         current_threshold_ratio        = 0.8
@@ -97,7 +103,7 @@ module "finops" {
     # Configure a budget based on the last month's spend.
     relative_amount = {
       alerts = {
-        notification_channels          = [google_monitoring_notification_channel.basic.id]
+        notification_channels          = [google_monitoring_notification_channel.email.id]
 
         # Send an alert when the spend for this month has increased more than 20% compared to last month.
         current_threshold_ratio        = 1.2
@@ -139,7 +145,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_budgets"></a> [budgets](#input\_budgets) | Defines budgets and budget alerts for the project | <pre>object({<br>    billing_account_id = string<br><br>    relative_amount = optional(object({<br>      alerts = object({<br>        notification_channels          = set(string)<br>        disable_default_iam_recipients = optional(bool, false)<br>        current_threshold_ratio        = optional(number)<br>        forecasted_threshold_ratio     = optional(number)<br>      })<br>      budget_name = optional(string, "Relative budget alert")<br>    }))<br><br>    absolute_amount = optional(object({<br>      amount = number<br>      alerts = object({<br>        notification_channels          = set(string)<br>        disable_default_iam_recipients = optional(bool, false)<br>        current_threshold_ratio        = optional(number)<br>        forecasted_threshold_ratio     = optional(number)<br>      })<br>      budget_name = optional(string, "Absolute budget alert")<br>    }))<br>  })</pre> | <pre>{<br>  "billing_account_id": null<br>}</pre> | no |
+| <a name="input_budgets"></a> [budgets](#input\_budgets) | Defines budgets and budget alerts for the project | <pre>object({<br>    billing_account_id = string<br><br>    absolute_amount = optional(object({<br>      amount = number<br>      alerts = object({<br>        notification_channels          = set(string)<br>        current_threshold_ratio        = optional(number)<br>        forecasted_threshold_ratio     = optional(number)<br>        disable_default_iam_recipients = optional(bool, false)<br>      })<br>      budget_name = optional(string, "Absolute budget alert")<br>    }))<br><br>    relative_amount = optional(object({<br>      alerts = object({<br>        notification_channels          = set(string)<br>        current_threshold_ratio        = optional(number)<br>        forecasted_threshold_ratio     = optional(number)<br>        disable_default_iam_recipients = optional(bool, false)<br>      })<br>      budget_name = optional(string, "Relative budget alert")<br>    }))<br>  })</pre> | <pre>{<br>  "billing_account_id": null<br>}</pre> | no |
 | <a name="input_project_id"></a> [project\_id](#input\_project\_id) | GCP project ID | `string` | n/a | yes |
 | <a name="input_quotas"></a> [quotas](#input\_quotas) | Defines quotas and quotas alerts for the project | <pre>object({<br>    bigquery_quota_tb_per_day_total    = optional(number, 10)<br>    bigquery_quota_tb_per_day_per_user = optional(number, 10)<br><br>    alerts = optional(object({<br>      notification_channels                              = set(string)<br>      bigquery_quota_tb_per_day_total_threshold_ratio    = optional(number)<br>      bigquery_quota_tb_per_day_per_user_threshold_ratio = optional(number)<br>    }))<br>  })</pre> | `{}` | no |
 

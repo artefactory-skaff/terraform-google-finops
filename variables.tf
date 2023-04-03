@@ -24,25 +24,25 @@ variable "budgets" {
   type = object({
     billing_account_id = string
 
-    relative_amount = optional(object({
-      alerts = object({
-        notification_channels          = set(string)
-        disable_default_iam_recipients = optional(bool, false)
-        current_threshold_ratio        = optional(number)
-        forecasted_threshold_ratio     = optional(number)
-      })
-      budget_name = optional(string, "Relative budget alert")
-    }))
-
     absolute_amount = optional(object({
       amount = number
       alerts = object({
         notification_channels          = set(string)
-        disable_default_iam_recipients = optional(bool, false)
         current_threshold_ratio        = optional(number)
         forecasted_threshold_ratio     = optional(number)
+        disable_default_iam_recipients = optional(bool, false)
       })
       budget_name = optional(string, "Absolute budget alert")
+    }))
+
+    relative_amount = optional(object({
+      alerts = object({
+        notification_channels          = set(string)
+        current_threshold_ratio        = optional(number)
+        forecasted_threshold_ratio     = optional(number)
+        disable_default_iam_recipients = optional(bool, false)
+      })
+      budget_name = optional(string, "Relative budget alert")
     }))
   })
 
