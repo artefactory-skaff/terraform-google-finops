@@ -21,7 +21,8 @@ Switched terraform to version "1.4.2"
 ```
 
 ## Log in to your GCP project
-!!! warn Look at the below commands outputs to make sure you're connecting to the right `PROJECT_ID`.
+!!! warn 
+    Look at the below commands outputs to make sure you're connecting to the right `PROJECT_ID`.
 ```shell
 $ gcloud auth login
 
