@@ -3,7 +3,7 @@ This mode of deployment is quicker and easier. It's suitable for project where t
 ## Install Terraform
 
 Use tfswitch to easily install and manage Terraform
-```shell
+```console
 $ brew install warrensbox/tap/tfswitch
 
 [...]
@@ -11,7 +11,7 @@ $ brew install warrensbox/tap/tfswitch
 🍺  /opt/homebrew/Cellar/tfswitch/0.13.1308: 6 files, 10.1MB, built in 3 seconds
 ==> Running `brew cleanup tfswitch`...
 ```
-```shell
+```console
 $ tfswitch
 
 ✔ 1.4.2
@@ -23,22 +23,22 @@ Switched terraform to version "1.4.2"
 ## Log in to your GCP project
 !!! warning 
     Look at the below commands outputs to make sure you're connecting to the right `PROJECT_ID`.
-```shell
+```console
 gcloud auth login
 ```
 ??? info "Output"
-    ```shell
+    ```console
     [...]
     You are now logged in as [alexis.vialaret@artefact.com].
     Your current project is [PROJECT_ID]. You can change this setting by running:
       $ gcloud config set project PROJECT_ID
     ```
 
-```shell
+```console
 gcloud auth application-default login
 ```
 ??? info "Output"
-    ```shell
+    ```console
     [...]
     Credentials saved to file: [/Users/alexis.vialaret/.config/gcloud/application_default_credentials.json]
     
@@ -48,24 +48,25 @@ gcloud auth application-default login
     ```
 
 ## Deploy the module
-
+!!! warning 
+    Only use this workflow if there are no other Terraform-managed resources in your project. [If there are, prefer the continuous deployment workflow.](continuous_deployment.md)
 Download the standalone `main.tf`:
-```shell
+```console
 curl -O https://raw.githubusercontent.com/artefactory/terraform-google-finops/main/examples/standalone/main.tf 
 ```
 ??? info "Output"
-    ```shell
+    ```console
       % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                      Dload  Upload   Total   Spent    Left  Speed
     100  3066  100  3066    0     0  11883      0 --:--:-- --:--:-- --:--:-- 11883
     ```
 
 Initialize Terraform:
-```shell
+```console
 terraform init
 ```
 ??? info "Output"
-    ```shell
+    ```console
     Initializing the backend...
     Initializing modules...
     Downloading registry.terraform.io/artefactory/finops/google 0.1.1 for finops...
@@ -98,11 +99,11 @@ terraform init
 Open `main.tf` and uncomment the quotas, budgets, and alerts that you want.
 
 Apply the infrastructure configuration:
-```shell
+```console
 terraform apply
 ```
 ??? info "Output"
-    ```shell
+    ```console
 
     [...]
       # module.finops.google_service_usage_consumer_quota_override.bigquery_query_user will be created
@@ -123,23 +124,14 @@ terraform apply
       Terraform will perform the actions described above.
       Only 'yes' will be accepted to approve.
     
-      Enter a value:
+      Enter a value: yes
+    [...]
+    Apply complete! Resources: 7 added, 0 changed, 0 destroyed.
     ```
 
 ## Clean-up
 
-<div class="termy">
-
+Clean up files created by Terraform:
 ```console
-$ pip install fastapi
-
----> 100%
-```
-
-</div>
-
-```console
-$ show progress
----> 100%
-Done!
+rm -rf main.tf .terraform.lock.hcl .terraform terraform.tfstate terraform.tfstate.backup
 ```
