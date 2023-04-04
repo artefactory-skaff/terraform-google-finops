@@ -10,3 +10,8 @@ nav:
   - User Guide:
       - One shot deployment: one_shot_deployment
       - Continuous deployment: continuous_deployment
+
+extra_css:
+- css/termynal.css
+extra_javascript:
+- js/termynal.js

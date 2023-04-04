@@ -127,3 +127,13 @@ terraform apply
     ```
 
 ## Clean-up
+
+<div class="termy">
+
+```console
+$ pip install fastapi
+
+---> 100%
+```
+
+</div>
