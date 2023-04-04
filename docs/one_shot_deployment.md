@@ -137,3 +137,9 @@ $ pip install fastapi
 ```
 
 </div>
+
+```console
+$ show progress
+---> 100%
+Done!
+```

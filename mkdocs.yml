@@ -4,6 +4,7 @@ repo_url: https://github.com/artefactory/terraform-google-finops
 
 plugins:
   - techdocs-core
+  - termynal
 
 nav:
   - Home: index.md
