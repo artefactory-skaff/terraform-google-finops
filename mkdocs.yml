@@ -7,6 +7,8 @@ plugins:
 
 nav:
   - Home: index.md
-  - User Guide:
-      - One shot deployment: one_shot_deployment
-      - Continuous deployment: continuous_deployment
+  - One shot deployment: one_shot_deployment
+  - Continuous deployment: continuous_deployment
+  - Setup:
+      - Installing Terraform: install_terraform.md
+      - Authenticate Terraform with GCP: gcp_login.md

@@ -8,8 +8,17 @@ This Terraform module allows you to configure and deploy:
 
 ### Minimal BQ quotas
 ```hcl
+locals {
+  project_id = "PROJECT_ID"  # Replace this with your actual project id
+}
+
+provider "google" {
+  user_project_override = true
+  billing_project       = local.project_id
+}
+
 resource "google_monitoring_notification_channel" "email" {
-  project      = "PROJECT_ID"
+  project      = local.project_id
   display_name = "Test Notification Channel"
   type         = "email"
   labels = {
@@ -22,7 +31,7 @@ module "finops" {
   source  = "artefactory/finops/google"
   version = "~> 0.1"
 
-  project_id = "PROJECT_ID"
+  project_id = local.project_id
 
   quotas = {
     bigquery_quota_tb_per_day_total    = 10  # 10 TiB Per day limit for the project
@@ -33,8 +42,17 @@ module "finops" {
 
 ### BQ quotas with alerts
 ```hcl
+locals {
+  project_id = "PROJECT_ID"  # Replace this with your actual project id
+}
+
+provider "google" {
+  user_project_override = true
+  billing_project       = local.project_id
+}
+
 resource "google_monitoring_notification_channel" "email" {
-  project      = "PROJECT_ID"
+  project      = local.project_id
   display_name = "Test Notification Channel"
   type         = "email"
   labels = {
@@ -47,7 +65,7 @@ module "finops" {
   source  = "artefactory/finops/google"
   version = "~> 0.1"
 
-  project_id = "PROJECT_ID"
+  project_id = local.project_id
 
   quotas = {
     bigquery_quota_tb_per_day_total    = 10  # 10 TiB Per day limit for the project
@@ -70,8 +88,17 @@ module "finops" {
 
 ⚠️ This requires the principals (you and/or a service account) executing this code to be `roles/billing.costsManager` on the billing account used.
 ```hcl
+locals {
+  project_id = "PROJECT_ID"  # Replace this with your actual project id
+}
+
+provider "google" {
+  user_project_override = true
+  billing_project       = local.project_id
+}
+
 resource "google_monitoring_notification_channel" "email" {
-  project      = "PROJECT_ID"
+  project      = local.project_id
   display_name = "Test Notification Channel"
   type         = "email"
   labels = {
@@ -84,7 +111,7 @@ module "finops" {
   source  = "artefactory/finops/google"
   version = "~> 0.1"
 
-  project_id = "PROJECT_ID"
+  project_id = local.project_id
 
   budgets = {
     billing_account_id = "ABCDEF-ABCDEF-ABCDEF"

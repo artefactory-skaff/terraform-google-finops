@@ -1,5 +1,14 @@
+locals {
+  project_id = "PROJECT_ID" # Replace this with your actual project id
+}
+
+provider "google" {
+  user_project_override = true
+  billing_project       = local.project_id
+}
+
 resource "google_monitoring_notification_channel" "email" {
-  project      = "PROJECT_ID" # Replace this with your actual project id
+  project      = local.project_id
   display_name = "Test Notification Channel"
   type         = "email"
   labels = {
@@ -12,7 +21,7 @@ module "finops" {
   source  = "artefactory/finops/google"
   version = "~> 0.1"
 
-  project_id = "PROJECT_ID" # Replace this with your actual project id
+  project_id = local.project_id
 
   #  quotas = {
   ##    # Set a 10 TiB Per day limit for the project
