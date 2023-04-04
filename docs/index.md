@@ -1,5 +1,15 @@
-This module Terraforms configurable BigQuery quotas and billing alerts on a GCP project.
+This module Terraforms configurable BigQuery quotas and billing alerts on a GCP project. 
 
+Use it as early in your project as possible to prevent cost runaway scenarios and establish a sound FinOps foundation for your project.
+
+Deployment time: ~15 minutes.
+
+---
+[View the module in the Terraform registry](https://registry.terraform.io/modules/artefactory/finops/google/latest)
+
+[View the module in GitHub](https://github.com/artefactory/terraform-google-finops)
+
+---
 ## Pre-requisites
 
 - [Install Terraform](install_terraform.md)
