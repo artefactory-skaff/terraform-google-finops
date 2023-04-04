@@ -1,55 +1,9 @@
-This mode of deployment is quicker and easier. It's suitable for projects where the infrastructure is not meant to be managed by Terraform in the long run.
+This mode of deployment is quicker and easier. It's suitable for projects where the infrastructure is not meant to be managed by Terraform in the long run. [Otherwise, prefer the continuous deployment workflow.](continuous_deployment.md)
 
-## Install Terraform
-
-Use tfswitch to easily install and manage Terraform
-```console
-$ brew install warrensbox/tap/tfswitch
-
-[...]
-==> Summary
-🍺  /opt/homebrew/Cellar/tfswitch/0.13.1308: 6 files, 10.1MB, built in 3 seconds
-==> Running `brew cleanup tfswitch`...
-```
-```console
-$ tfswitch
-
-✔ 1.4.2
-Downloading to: /Users/alexis.vialaret/.terraform.versions
-20588400 bytes downloaded
-Switched terraform to version "1.4.2" 
-```
-
-## Log in to your GCP project
-!!! warning 
-    Look at the below commands outputs to make sure you're connecting to the right `PROJECT_ID`.
-```console
-gcloud auth login
-```
-??? info "Output"
-    ```console
-    [...]
-    You are now logged in as [alexis.vialaret@artefact.com].
-    Your current project is [PROJECT_ID]. You can change this setting by running:
-      $ gcloud config set project PROJECT_ID
-    ```
-
-```console
-gcloud auth application-default login
-```
-??? info "Output"
-    ```console
-    [...]
-    Credentials saved to file: [/Users/alexis.vialaret/.config/gcloud/application_default_credentials.json]
-    
-    These credentials will be used by any library that requests Application Default Credentials (ADC).
-    
-    Quota project "PROJECT_ID" was added to ADC which can be used by Google client libraries for billing and quota. Note that some services may still bill the project owning the resource.
-    ```
+!!! warning
+    [Make sure you have fulfilled all the pre-requisites](index.md)
 
 ## Deploy the module
-!!! warning 
-    Only use this workflow if there are no other Terraform-managed resources in your project. [If there are, prefer the continuous deployment workflow.](continuous_deployment.md)
 Download the standalone `main.tf`:
 ```console
 curl -O https://raw.githubusercontent.com/artefactory/terraform-google-finops/main/examples/standalone/main.tf 
