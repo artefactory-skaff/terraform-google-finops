@@ -9,6 +9,7 @@ This Terraform module allows you to configure and deploy:
 ### Minimal BQ quotas
 ```hcl
 resource "google_monitoring_notification_channel" "email" {
+  project      = "PROJECT_ID"
   display_name = "Test Notification Channel"
   type         = "email"
   labels = {
@@ -33,6 +34,7 @@ module "finops" {
 ### BQ quotas with alerts
 ```hcl
 resource "google_monitoring_notification_channel" "email" {
+  project      = "PROJECT_ID"
   display_name = "Test Notification Channel"
   type         = "email"
   labels = {
@@ -69,6 +71,7 @@ module "finops" {
 ⚠️ This requires the principals (you and/or a service account) executing this code to be `roles/billing.costsManager` on the billing account used.
 ```hcl
 resource "google_monitoring_notification_channel" "email" {
+  project      = "PROJECT_ID"
   display_name = "Test Notification Channel"
   type         = "email"
   labels = {

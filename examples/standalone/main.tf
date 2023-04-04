@@ -1,4 +1,5 @@
 resource "google_monitoring_notification_channel" "email" {
+  project      = "PROJECT_ID" # Replace this with your actual project id
   display_name = "Test Notification Channel"
   type         = "email"
   labels = {
@@ -11,8 +12,7 @@ module "finops" {
   source  = "artefactory/finops/google"
   version = "~> 0.1"
 
-  # Replace this with your actual project id
-  project_id = "PROJECT_ID"
+  project_id = "PROJECT_ID" # Replace this with your actual project id
 
   #  quotas = {
   ##    # Set a 10 TiB Per day limit for the project

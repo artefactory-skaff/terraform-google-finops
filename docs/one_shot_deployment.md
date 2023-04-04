@@ -1,4 +1,4 @@
-This mode of deployment is quicker and easier. It's suitable for project where the infrastructure is not meant to be managed by Terraform in the long run.
+This mode of deployment is quicker and easier. It's suitable for projects where the infrastructure is not meant to be managed by Terraform in the long run.
 
 ## Install Terraform
 
