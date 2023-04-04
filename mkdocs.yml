@@ -4,7 +4,6 @@ repo_url: https://github.com/artefactory/terraform-google-finops
 
 plugins:
   - techdocs-core
-  - termynal
 
 nav:
   - Home: index.md
@@ -13,6 +12,8 @@ nav:
       - Continuous deployment: continuous_deployment
 
 extra_css:
-- css/termynal.css
+  - css/termynal.css
+  - css/custom.css
 extra_javascript:
-- js/termynal.js
+  - js/termynal.js
+  - js/custom.js
