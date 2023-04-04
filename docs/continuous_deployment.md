@@ -49,9 +49,13 @@ gcloud auth application-default login
 
 !!! note
     To keep your infra code clean and concerns separated, we recommend adding the finops module in a standalone file
+
+```console
+curl -o finops.tf https://raw.githubusercontent.com/artefactory/terraform-google-finops/main/examples/standalone/main.tf
+```
 ```console
 .
-<p>├── <span style="color:green">finops.tf</span>.</p>
+├── finops.tf ⬅
 ├── main.tf
 ├── outputs.tf
 └── variables.tf
@@ -60,4 +64,4 @@ gcloud auth application-default login
 terraform init
 ```
 
-[Refer to the Terraform registry entry for the full module documentation and examples.](https://registry.terraform.io/modules/artefactory/finops/google/latest)
+[The Terraform registry entry has the full module documentation and examples.](https://registry.terraform.io/modules/artefactory/finops/google/latest)
