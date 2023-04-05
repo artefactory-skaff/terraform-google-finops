@@ -43,28 +43,24 @@ Deployment time: ~15 minutes.
   
     ```console
     gcloud auth login
+    
+    [...]
+    You are now logged in as [alexis.vialaret@artefact.com].
+    Your current project is [PROJECT_ID]. You can change this setting by running:
+    $ gcloud config set project PROJECT_ID
     ```
-    ??? info "Output"
-        ```console
-        [...]
-        You are now logged in as [alexis.vialaret@artefact.com].
-        Your current project is [PROJECT_ID]. You can change this setting by running:
-        $ gcloud config set project PROJECT_ID
-        ```
     
     ```console
     gcloud auth application-default login
+
+    [...]
+    Credentials saved to file: [/Users/alexis.vialaret/.config/gcloud/application_default_credentials.json]
+    These credentials will be used by any library that requests Application Default Credentials (ADC).
+    Quota project "PROJECT_ID" was added to ADC which can be used by Google client libraries for billing and quota. Note that some services may still bill the project owning the resource.
     ```
-    ??? info "Output"
-        ```console
-        [...]
-        Credentials saved to file: [/Users/alexis.vialaret/.config/gcloud/application_default_credentials.json]
-        
-        These credentials will be used by any library that requests Application Default Credentials (ADC).
-        
-        Quota project "PROJECT_ID" was added to ADC which can be used by Google client libraries for billing and quota. Note that some services may still bill the project owning the resource.
-        ```
-- [Cloud Resource Manager API needs to be activated in your project](https://console.developers.google.com/apis/api/cloudresourcemanager.googleapis.com/overview)
+
+??? note "Activate the Cloud Resource Manager API"
+    [Go to the Google cloud console and activate the API](https://console.developers.google.com/apis/api/cloudresourcemanager.googleapis.com/overview)
 
 ### Required roles and permissions
 
