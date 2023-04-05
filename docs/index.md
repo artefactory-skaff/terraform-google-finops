@@ -151,7 +151,8 @@ Deployment time: ~15 minutes.
         commands will detect it and remind you to do so if necessary.
         ```
     
-    Open `main.tf` and uncomment the quotas, budgets, and alerts that you want.
+    !!! note ""
+        Open `main.tf` and uncomment the quotas, budgets, and alerts that you want.
     
     Apply the infrastructure configuration:
     ```console
