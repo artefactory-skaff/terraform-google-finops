@@ -62,37 +62,45 @@ Deployment time: ~15 minutes.
 ??? note "Activate the Cloud Resource Manager API"
     [Go to the Google cloud console and activate the API](https://console.developers.google.com/apis/api/cloudresourcemanager.googleapis.com/overview)
 
-### Required roles and permissions
+??? note "Required roles and permissions"
+    ####  On the project you want to deploy on:
+    
+    - Broad roles that will work, but **not recommended** for service accounts or even people.
+      - `roles/owner`
+      - `roles/editor`
+    - Recommended roles to respect least privilege principle.
+      - `roles/servicemanagement.serviceConsumer`
+      - `roles/servicemanagement.quotaAdmin`
+      - `roles/serviceusage.serviceUsageAdmin`
+      - `roles/monitoring.notificationChannelEditor`
+    - Granular permissions required to build a custom role specific for this deployment.
+      - `monitoring.alertPolicies.create`
+      - `monitoring.alertPolicies.delete`
+      - `monitoring.notificationChannels.create`
+      - `monitoring.notificationChannels.delete`
+      - `servicemanagement.services.bind`
+      - `serviceusage.operations.get`
+      - `serviceusage.quotas.update`
+      - `serviceusage.services.enable`
+      - `serviceusage.services.get`
+    
+    ####  On the billing account:
+    !!! info
+        To deploy budget alerts, you will need permissions on the billing account linked with the project. This is not something that can be granted at the project level. It has to be granted on the Billing Account itself.
+    
+    The principal used to deploy budget alerts will need to be `roles/billing.costsManager`
+    
+    You will not need this role if you're only deploying quotas.
 
-####  On the project you want to deploy on:
+## Deploy the FinOps module on GCP
 
-- Broad roles that will work, but **not recommended** for service accounts or even people.
-  - `roles/owner`
-  - `roles/editor`
-- Recommended roles to respect least privilege principle.
-  - `roles/servicemanagement.serviceConsumer`
-  - `roles/servicemanagement.quotaAdmin`
-  - `roles/serviceusage.serviceUsageAdmin`
-  - `roles/monitoring.notificationChannelEditor`
-- Granular permissions required to build a custom role specific for this deployment.
-  - `monitoring.alertPolicies.create`
-  - `monitoring.alertPolicies.delete`
-  - `monitoring.notificationChannels.create`
-  - `monitoring.notificationChannels.delete`
-  - `servicemanagement.services.bind`
-  - `serviceusage.operations.get`
-  - `serviceusage.quotas.update`
-  - `serviceusage.services.enable`
-  - `serviceusage.services.get`
+=== "One-shot deployment"
 
-####  On the billing account:
-!!! info
-    To deploy budget alerts, you will need permissions on the billing account linked with the project. This is not something that can be granted at the project level. It has to be granted on the Billing Account itself.
+    Instructions for a one-shot deployment
 
-The principal used to deploy budget alerts will need to be `roles/billing.costsManager`
+=== "Managed deployment"
 
-You will not need this role if you're only deploying quotas.
+    Instructions for a managed deployment
 
-## Deployment
-- [One-shot](one_shot_deployment.md)
-- [Managed](continuous_deployment.md)
+- [One-shot deployment how-to](one_shot_deployment.md)
+- [Managed deployment how-to](continuous_deployment.md)
