@@ -104,7 +104,8 @@ Deployment time: ~15 minutes.
 
 === "One-shot deployment"
 
-    This mode of deployment is quicker and easier. It's suitable for projects where the infrastructure is not meant to be managed by Terraform in the long run. Otherwise, prefer the continuous deployment workflow.
+    !!! note ""
+        This mode of deployment is quicker and easier. It's suitable for projects where the infrastructure is not meant to be managed by Terraform in the long run. Otherwise, prefer the continuous deployment workflow.
 
     Download the standalone `main.tf`:
     ```console
