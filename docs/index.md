@@ -35,8 +35,10 @@ Deployment time: ~15 minutes.
   
 
 ??? note "Log in to GCP with your default credentials"
-  !!! warning 
-    Look at the below commands outputs to make sure you're connecting to the right `PROJECT_ID`.
+
+    !!! warning 
+        Look at the below commands outputs to make sure you're connecting to the right `PROJECT_ID`.
+  
   ```console
   gcloud auth login
   ```
