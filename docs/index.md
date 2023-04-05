@@ -13,25 +13,27 @@ Deployment time: ~15 minutes.
 ## Pre-requisites
 
 ??? note "Install Terraform"
-  !!! note
-    Tested for Terraform >= v1.4.0
-  Use tfswitch to easily install and manage Terraform
-  ```console
-  $ brew install warrensbox/tap/tfswitch
-  
-  [...]
-  ==> Summary
-  🍺  /opt/homebrew/Cellar/tfswitch/0.13.1308: 6 files, 10.1MB, built in 3 seconds
-  ==> Running `brew cleanup tfswitch`...
-  ```
-  ```console
-  $ tfswitch
-  
-  ✔ 1.4.2
-  Downloading to: /Users/alexis.vialaret/.terraform.versions
-  20588400 bytes downloaded
-  Switched terraform to version "1.4.2" 
-  ```
+
+    !!! note
+        Tested for Terraform >= v1.4.0
+
+    Use tfswitch to easily install and manage Terraform
+    ```console
+    $ brew install warrensbox/tap/tfswitch
+    
+    [...]
+    ==> Summary
+    🍺  /opt/homebrew/Cellar/tfswitch/0.13.1308: 6 files, 10.1MB, built in 3 seconds
+    ==> Running `brew cleanup tfswitch`...
+    ```
+    ```console
+    $ tfswitch
+    
+    ✔ 1.4.2
+    Downloading to: /Users/alexis.vialaret/.terraform.versions
+    20588400 bytes downloaded
+    Switched terraform to version "1.4.2" 
+    ```
   
 
 ??? note "Log in to GCP with your default credentials"
@@ -39,29 +41,29 @@ Deployment time: ~15 minutes.
     !!! warning 
         Look at the below commands outputs to make sure you're connecting to the right `PROJECT_ID`.
   
-  ```console
-  gcloud auth login
-  ```
-  ??? info "Output"
-      ```console
-      [...]
-      You are now logged in as [alexis.vialaret@artefact.com].
-      Your current project is [PROJECT_ID]. You can change this setting by running:
+    ```console
+    gcloud auth login
+    ```
+    ??? info "Output"
+        ```console
+        [...]
+        You are now logged in as [alexis.vialaret@artefact.com].
+        Your current project is [PROJECT_ID]. You can change this setting by running:
         $ gcloud config set project PROJECT_ID
-      ```
-  
-  ```console
-  gcloud auth application-default login
-  ```
-  ??? info "Output"
-      ```console
-      [...]
-      Credentials saved to file: [/Users/alexis.vialaret/.config/gcloud/application_default_credentials.json]
-      
-      These credentials will be used by any library that requests Application Default Credentials (ADC).
-      
-      Quota project "PROJECT_ID" was added to ADC which can be used by Google client libraries for billing and quota. Note that some services may still bill the project owning the resource.
-      ```
+        ```
+    
+    ```console
+    gcloud auth application-default login
+    ```
+    ??? info "Output"
+        ```console
+        [...]
+        Credentials saved to file: [/Users/alexis.vialaret/.config/gcloud/application_default_credentials.json]
+        
+        These credentials will be used by any library that requests Application Default Credentials (ADC).
+        
+        Quota project "PROJECT_ID" was added to ADC which can be used by Google client libraries for billing and quota. Note that some services may still bill the project owning the resource.
+        ```
 - [Cloud Resource Manager API needs to be activated in your project](https://console.developers.google.com/apis/api/cloudresourcemanager.googleapis.com/overview)
 
 ### Required roles and permissions
