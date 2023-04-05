@@ -184,7 +184,7 @@ Deployment time: ~15 minutes.
 
 === "Managed deployment"
     
-    !!! ""
+    !!! note ""
         To keep your infra code clean and concerns separated, we recommend adding the finops module in a standalone file
     
     ```console
