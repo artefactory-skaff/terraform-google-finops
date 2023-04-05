@@ -1,3 +1,9 @@
+---
+hide:
+  - navigation
+  - toc
+---
+
 This module Terraforms configurable BigQuery quotas and billing alerts on a GCP project. 
 
 Use it as early as possible in your project to prevent cost runaway scenarios and establish a sound FinOps foundation for your project.
