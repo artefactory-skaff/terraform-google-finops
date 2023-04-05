@@ -63,7 +63,8 @@ Deployment time: ~15 minutes.
     [Go to the Google cloud console and activate the API](https://console.developers.google.com/apis/api/cloudresourcemanager.googleapis.com/overview)
 
 ??? success "Required roles and permissions"
-    ####  On the project you want to deploy on:
+
+    **On the project you want to deploy on:**
     
     - Broad roles that will work, but **not recommended** for service accounts or even people.
       - `roles/owner`
@@ -84,7 +85,7 @@ Deployment time: ~15 minutes.
       - `serviceusage.services.enable`
       - `serviceusage.services.get`
     
-    ####  On the billing account:
+    **On the billing account:**
     !!! info
         To deploy budget alerts, you will need permissions on the billing account linked with the project. This is not something that can be granted at the project level. It has to be granted on the Billing Account itself.
     
@@ -97,8 +98,7 @@ Deployment time: ~15 minutes.
 === "One-shot deployment"
 
     This mode of deployment is quicker and easier. It's suitable for projects where the infrastructure is not meant to be managed by Terraform in the long run. Otherwise, prefer the continuous deployment workflow.
-    
-    ## Deploy the module
+
     Download the standalone `main.tf`:
     ```console
     curl -O https://raw.githubusercontent.com/artefactory/terraform-google-finops/main/examples/standalone/main.tf 
@@ -178,21 +178,14 @@ Deployment time: ~15 minutes.
         Apply complete! Resources: 7 added, 0 changed, 0 destroyed.
         ```
     
-    ## Clean-up
-    
     Clean up files created by Terraform:
     ```console
     rm -rf main.tf .terraform.lock.hcl .terraform terraform.tfstate terraform.tfstate.backup
     ```
 
 === "Managed deployment"
-
-    !!! warning
-        [Make sure you have fulfilled all the pre-requisites](index.md)
     
-    ## Add the module to your infrastructure deployment
-    
-    !!! note
+    !!! ""
         To keep your infra code clean and concerns separated, we recommend adding the finops module in a standalone file
     
     ```console
