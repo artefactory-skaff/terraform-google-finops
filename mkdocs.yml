@@ -4,16 +4,3 @@ repo_url: https://github.com/artefactory/terraform-google-finops
 
 plugins:
   - techdocs-core
-
-markdown_extensions:
-  - admonition
-  - pymdownx.details
-  - pymdownx.superfences
-
-nav:
-  - Home: index.md
-  - One shot deployment: one_shot_deployment
-  - Continuous deployment: continuous_deployment
-  - Setup:
-      - Installing Terraform: install_terraform.md
-      - Authenticate Terraform with GCP: gcp_login.md

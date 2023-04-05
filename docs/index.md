@@ -93,6 +93,7 @@ Deployment time: ~15 minutes.
     
     You will not need this role if you're only deploying quotas.
 
+---
 ## Deploy the FinOps module on GCP
 
 === "One-shot deployment"
@@ -102,13 +103,11 @@ Deployment time: ~15 minutes.
     Download the standalone `main.tf`:
     ```console
     curl -O https://raw.githubusercontent.com/artefactory/terraform-google-finops/main/examples/standalone/main.tf 
+
+      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                     Dload  Upload   Total   Spent    Left  Speed
+    100  3066  100  3066    0     0  11883      0 --:--:-- --:--:-- --:--:-- 11883
     ```
-    ??? info "Output"
-        ```console
-          % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                         Dload  Upload   Total   Spent    Left  Speed
-        100  3066  100  3066    0     0  11883      0 --:--:-- --:--:-- --:--:-- 11883
-        ```
     
     Initialize Terraform:
     ```console
