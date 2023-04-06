@@ -23,7 +23,7 @@ Deployment time: ~15 minutes.
     !!! note
         Tested for Terraform >= v1.4.0
 
-    Use tfswitch to easily install and manage Terraform
+    Use tfswitch to easily install and manage Terraform versions:
     ```console
     $ brew install warrensbox/tap/tfswitch
     
@@ -100,12 +100,33 @@ Deployment time: ~15 minutes.
     You will not need this role if you're only deploying quotas.
 
 ---
+## Features
+    
+??? success "BigQuery Quotas"
+    
+    It is strongly recommended to set up BigQuery quotas at the very beginning of a project on GCP. Since the amount of data scanned (= money spent) on BQ is essentially infinite, the quotas protect against cost runaway scenarios. Without quotas it is entirely possible to run queries that cost upwards of $20000.
+
+    This module will allow you to set per-project, per-day quotas, and per-user, per-project, per-day quotas.
+
+    When setting these values, keep in mind that 1TiB = $5.
+
+    You can also send alerts when you're reaching a certain threshold of your set quota.
+    In order to use this feature, you will also need a [notification channel](https://cloud.google.com/monitoring/support/notification-options), which you can also Terraform. There are examples in the code samples.
+
+??? success "Budget alerts"
+    
+    This module can also help you set [budgets and budget alerts](https://cloud.google.com/billing/docs/how-to/budgets) for your project.
+
+    ???+ warning "Billing account ID"
+        In order to use this feature, you will need the ID of the billing account linked to your project as well as the billing account permissions described in the pre-requistites. ![](get_billing_account_id.gif).
+
+---
 ## Deploy the FinOps module on GCP
 
 === "One-shot deployment"
 
     !!! note ""
-        This mode of deployment is quicker and easier. It's suitable for projects where the infrastructure is not meant to be managed by Terraform in the long run. Otherwise, prefer the continuous deployment workflow.
+        This mode of deployment is quicker and easier. It's suitable for projects where the infrastructure is not meant to be managed by Terraform in the long run. Otherwise, prefer the managed deployment workflow.
 
     Download the standalone `main.tf`:
     ```console
@@ -116,6 +137,7 @@ Deployment time: ~15 minutes.
     100  3066  100  3066    0     0  11883      0 --:--:-- --:--:-- --:--:-- 11883
     ```
     
+    ---
     Initialize Terraform:
     ```console
     terraform init
@@ -151,9 +173,10 @@ Deployment time: ~15 minutes.
         commands will detect it and remind you to do so if necessary.
         ```
     
-    !!! note ""
-        Open `main.tf` and uncomment the quotas, budgets, and alerts that you want.
+    ---
+    Open `main.tf` and uncomment the quotas, budgets, and alerts that you want.
     
+    ---
     Apply the infrastructure configuration:
     ```console
     terraform apply
@@ -185,6 +208,7 @@ Deployment time: ~15 minutes.
         Apply complete! Resources: 7 added, 0 changed, 0 destroyed.
         ```
     
+    ---
     Clean up files created by Terraform:
     ```console
     rm -rf main.tf .terraform.lock.hcl .terraform terraform.tfstate terraform.tfstate.backup
@@ -192,8 +216,11 @@ Deployment time: ~15 minutes.
 
 === "Managed deployment"
     
-    !!! note ""
-        To keep your infra code clean and concerns separated, we recommend adding the finops module in a standalone file
+    !!! info ""
+        This deployment mode is meant for Terrafrom power users who already maintain an infrastructure deployment with a remote state. [Install this module and follow the usage documentation.](https://registry.terraform.io/modules/artefactory/finops/google/latest)
+
+    !!! tip ""
+        To keep your infra code clean and concerns separated, we recommend adding the finops module in a standalone file.
     
     ```console
     curl -o finops.tf https://raw.githubusercontent.com/artefactory/terraform-google-finops/main/examples/standalone/main.tf
@@ -208,5 +235,3 @@ Deployment time: ~15 minutes.
     ```console
     terraform init
     ```
-    
-    [The Terraform registry entry has the full module documentation and examples.](https://registry.terraform.io/modules/artefactory/finops/google/latest)

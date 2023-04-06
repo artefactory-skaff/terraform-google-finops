@@ -7,12 +7,14 @@ provider "google" {
   billing_project       = local.project_id
 }
 
+# This is only required if you want to send alerts.
+# You can send different types of alerts besides email (Slack, Teams, SMS...): see https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/monitoring_notification_channel
 resource "google_monitoring_notification_channel" "email" {
   project      = local.project_id
   display_name = "Test Notification Channel"
   type         = "email"
   labels = {
-    email_address = "fake_email@blahblah.com"
+    email_address = "fake_email@blahblah.com" # Change this to the email alerts will be sent to
   }
   force_delete = false
 }
@@ -42,7 +44,7 @@ module "finops" {
   #  }
 
   #  budgets = {
-  #    billing_account_id = "ABCDEF-ABCDEF-ABCDEF"
+  #    billing_account_id = "ABCDEF-ABCDEF-ABCDEF"  # Replace this with the billing account ID of your project https://console.cloud.google.com/billing/projects
   #
   ##    # Configure a $200 USD budget for the project with alerts at 80% actual consumption and 200% forecasted consumption.
   ##    absolute_amount = {
