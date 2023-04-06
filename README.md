@@ -31,7 +31,7 @@ resource "google_monitoring_notification_channel" "email" {
 
 module "finops" {
   source  = "artefactory/finops/google"
-  version = "~> 0.1"
+  version = "~> 1.0"
 
   project_id = local.project_id
 
@@ -67,7 +67,7 @@ resource "google_monitoring_notification_channel" "email" {
 
 module "finops" {
   source  = "artefactory/finops/google"
-  version = "~> 0.1"
+  version = "~> 1.0"
 
   project_id = local.project_id
 
@@ -115,7 +115,7 @@ resource "google_monitoring_notification_channel" "email" {
 
 module "finops" {
   source  = "artefactory/finops/google"
-  version = "~> 0.1"
+  version = "~> 1.0"
 
   project_id = local.project_id
 

@@ -12,7 +12,7 @@ No requirements.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_finops"></a> [finops](#module\_finops) | artefactory/finops/google | ~> 0.1 |
+| <a name="module_finops"></a> [finops](#module\_finops) | artefactory/finops/google | ~> 1.0 |
 
 ## Resources
 
