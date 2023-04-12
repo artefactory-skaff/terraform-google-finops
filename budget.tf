@@ -34,6 +34,7 @@ resource "google_billing_budget" "relative_amount_budget" {
 
   all_updates_rule {
     monitoring_notification_channels = var.budgets.relative_amount.alerts.notification_channels
+    pubsub_topic                     = var.budgets.relative_amount.alerts.pubsub_topic
     disable_default_iam_recipients   = var.budgets.relative_amount.alerts.disable_default_iam_recipients
   }
 
@@ -66,6 +67,7 @@ resource "google_billing_budget" "absolute_amount_budget" {
 
   all_updates_rule {
     monitoring_notification_channels = var.budgets.absolute_amount.alerts.notification_channels
+    pubsub_topic                     = var.budgets.absolute_amount.alerts.pubsub_topic
     disable_default_iam_recipients   = var.budgets.absolute_amount.alerts.disable_default_iam_recipients
   }
 

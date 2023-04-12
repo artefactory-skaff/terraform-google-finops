@@ -28,6 +28,7 @@ variable "budgets" {
       amount = number
       alerts = object({
         notification_channels          = set(string)
+        pubsub_topic                   = optional(string)
         current_threshold_ratio        = optional(number)
         forecasted_threshold_ratio     = optional(number)
         disable_default_iam_recipients = optional(bool, false)
@@ -38,6 +39,7 @@ variable "budgets" {
     relative_amount = optional(object({
       alerts = object({
         notification_channels          = set(string)
+        pubsub_topic                   = optional(string)
         current_threshold_ratio        = optional(number)
         forecasted_threshold_ratio     = optional(number)
         disable_default_iam_recipients = optional(bool, false)
