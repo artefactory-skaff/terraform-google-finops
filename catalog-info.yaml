@@ -5,6 +5,8 @@ metadata:
   title: Terraform module for GCP FinOps
   description: >
     This Terraform module allows you to configure and deploy a sound GCP FinOps foundation for your project. BigQuery quotas and quotas alerts, project budgets and budgets alerts.
+  labels:
+    accelerator: "1"
   annotations:
     github.com/project-slug: artefactory/terraform-google-finops
     backstage.io/techdocs-ref: dir:.
