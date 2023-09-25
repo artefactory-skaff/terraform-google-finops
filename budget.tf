@@ -69,11 +69,11 @@ resource "google_billing_budget" "absolute_amount_budget" {
   }
 
   dynamic "all_updates_rule" {
-    for_each = length(var.budgets.relative_amount.alerts.notification_channels) > 0 ? [1] : []
+    for_each = length(var.budgets.absolute_amount.alerts.notification_channels) > 0 ? [1] : []
     content {
-      monitoring_notification_channels = var.budgets.relative_amount.alerts.notification_channels
-      pubsub_topic                     = var.budgets.relative_amount.alerts.pubsub_topic
-      disable_default_iam_recipients   = var.budgets.relative_amount.alerts.disable_default_iam_recipients
+      monitoring_notification_channels = var.budgets.absolute_amount.alerts.notification_channels
+      pubsub_topic                     = var.budgets.absolute_amount.alerts.pubsub_topic
+      disable_default_iam_recipients   = var.budgets.absolute_amount.alerts.disable_default_iam_recipients
     }
   }
 
