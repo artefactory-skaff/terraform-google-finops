@@ -2,7 +2,7 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: terraform-google-finops
-  title: Terraform module for GCP FinOps
+  title: Terraform module GCP FinOps
   description: >
     This Terraform module allows you to configure and deploy a sound GCP FinOps foundation for your project. BigQuery quotas and quotas alerts, project budgets and budgets alerts.
   labels:
