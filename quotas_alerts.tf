@@ -37,7 +37,7 @@ resource "google_monitoring_alert_policy" "bigquery_query_user_quota_alert" {
   }
 
   documentation {
-    content   = "A user on ${var.project_id} Reached ${var.quotas.bigquery_quota_tb_per_day_total * var.quotas.alerts.bigquery_quota_tb_per_day_per_user_threshold_ratio}TB out of ${var.quotas.bigquery_quota_tb_per_day_total}TB of the daily BigQuery quota (${var.quotas.alerts.bigquery_quota_tb_per_day_per_user_threshold_ratio * 100}%)"
+    content   = "A user on ${var.project_id} Reached ${var.quotas.bigquery_quota_tb_per_day_per_user * var.quotas.alerts.bigquery_quota_tb_per_day_per_user_threshold_ratio}TB out of ${var.quotas.bigquery_quota_tb_per_day_per_user}TB of the daily BigQuery quota (${var.quotas.alerts.bigquery_quota_tb_per_day_per_user_threshold_ratio * 100}%)"
     mime_type = "text/markdown"
   }
 
