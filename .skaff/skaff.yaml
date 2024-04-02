@@ -1,0 +1,27 @@
+spec_version: 1
+
+# Everyting in this file will be used to populate the catalog on skaff.artefact.com
+# It is also vectorized as is for the search, so make sure to provide relevant keywords
+
+name: Terraform module GCP FinOps
+owner: alexis.vialaret@artefact.com
+description: >
+  This Terraform module allows you to configure and deploy a sound GCP FinOps foundation for your project. BigQuery quotas, project budgets, and alerts.
+documentation_url: https://registry.terraform.io/modules/artefactory/finops/google/latest
+
+type: deployable       # deployable, knowledge pack
+lifecycle: production  # prototype, production
+
+users:                 # DS, DA, DE
+  - DS
+  - DE
+
+clouds:                # aws, gcp, azure, databricks
+  - gcp
+
+technologies:          # python, dbt, terraform, airbyte, ...
+  - terraform
+
+expertises:            # MMM, forecasting, ELT, release engineering, ...
+  - finops
+  - infrastructure as code
