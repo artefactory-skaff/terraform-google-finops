@@ -2,7 +2,7 @@
 
 This Terraform module allows you to configure and deploy:
 - BigQuery quotas and quotas alerts.
-- Project budgets and budgets alerts.
+- Project budgets and budgets alerts (defined by default on a year calendar period)
 
 ## Usage
 
@@ -121,6 +121,7 @@ module "finops" {
 
   budgets = {
     billing_account_id = "ABCDEF-ABCDEF-ABCDEF"  # Replace this with the billing account ID of your project https://console.cloud.google.com/billing/projects
+    calendar_period = "MONTH"
 
     # Configure a $200 USD budget for the project with alerts at 80% actual consumption and 200% forecasted consumption.
     absolute_amount = {
