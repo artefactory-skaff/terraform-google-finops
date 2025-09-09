@@ -17,7 +17,8 @@ resource "google_billing_budget" "relative_amount_budget" {
   display_name    = var.budgets.relative_amount.budget_name
 
   budget_filter {
-    projects = ["projects/${data.google_project.project.number}"]
+    projects        = ["projects/${data.google_project.project.number}"]
+    calendar_period = var.budgets.calendar_period
   }
 
   amount {

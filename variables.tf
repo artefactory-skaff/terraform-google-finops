@@ -24,6 +24,8 @@ variable "budgets" {
   type = object({
     billing_account_id = string
 
+    calendar_period = optional(string, "YEAR")
+
     absolute_amount = optional(object({
       amount = number
       alerts = object({
