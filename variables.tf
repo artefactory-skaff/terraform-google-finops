@@ -35,7 +35,6 @@ variable "budgets" {
         forecasted_threshold_ratio     = optional(number)
         disable_default_iam_recipients = optional(bool, false)
       })
-      budget_name = optional(string, "Absolute budget alert")
     }))
 
     relative_amount = optional(object({
@@ -46,7 +45,6 @@ variable "budgets" {
         forecasted_threshold_ratio     = optional(number)
         disable_default_iam_recipients = optional(bool, false)
       })
-      budget_name = optional(string, "Relative budget alert")
     }))
   })
 

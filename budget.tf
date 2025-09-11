@@ -14,7 +14,7 @@ resource "google_billing_budget" "relative_amount_budget" {
   count = var.budgets.billing_account_id != null && var.budgets.relative_amount != null ? 1 : 0
 
   billing_account = var.budgets.billing_account_id
-  display_name    = var.budgets.relative_amount.budget_name
+  display_name    = "Relative budget alert for project ${data.google_project.project.name} (Number ${data.google_project.project.project_number})"
 
   budget_filter {
     projects        = ["projects/${data.google_project.project.number}"]
@@ -49,7 +49,7 @@ resource "google_billing_budget" "absolute_amount_budget" {
   count = var.budgets.billing_account_id != null && var.budgets.absolute_amount != null ? 1 : 0
 
   billing_account = var.budgets.billing_account_id
-  display_name    = var.budgets.absolute_amount.budget_name
+  display_name    = "Absolute budget alert for project ${data.google_project.project.name} (Number ${data.google_project.project.project_number})"
 
   budget_filter {
     projects        = ["projects/${data.google_project.project.number}"]

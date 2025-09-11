@@ -65,9 +65,6 @@ module "finops" {
   ###        # Enable this to prevent the billing account's admins to receive these alerts.
   ###        disable_default_iam_recipients = false
   ##      }
-  ##
-  ###      # Override this variable to name the budget GCP resource. Useful to fit naming conventions.
-  ###      budget_name = "Absolute budget alert"
   ##    }
   #
   ##    # Configure a budget based on the last month's spend.
@@ -86,9 +83,6 @@ module "finops" {
   ###        # Enable this to prevent the billing account's admins to receive these alerts.
   ###        disable_default_iam_recipients = false
   ##      }
-  ##
-  ###      # Override this variable to name the budget GCP resource. Useful to fit naming conventions.
-  ###      budget_name = "Relative budget alert"
   ##    }
   #  }
 }
